@@ -1,6 +1,6 @@
-package com.devapix.mapper;
-import com.devapix.dto.response.ApiResponse;
-import com.devapix.model.ApiModel;
+package com.devapix.api_catalog_service.mapper;
+import com.devapix.api_catalog_service.dto.response.ApiResponse;
+import com.devapix.api_catalog_service.model.ApiModel;
 
 public class ApiMapper {
 

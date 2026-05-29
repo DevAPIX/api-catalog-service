@@ -1,6 +1,6 @@
-package com.devapix.controller;
-import com.devapix.model.CategoryModel;
-import com.devapix.service.CategoryService;
+package com.devapix.api_catalog_service.controller;
+import com.devapix.api_catalog_service.model.CategoryModel;
+import com.devapix.api_catalog_service.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

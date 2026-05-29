@@ -1,4 +1,4 @@
-package com.devapix.config;
+package com.devapix.api_catalog_service.config;
 
 
 import io.swagger.v3.oas.models.OpenAPI;

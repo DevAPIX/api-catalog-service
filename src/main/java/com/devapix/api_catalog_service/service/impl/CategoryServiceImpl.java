@@ -1,12 +1,12 @@
-package com.devapix.service.impl;
-import com.devapix.model.CategoryModel;
-import com.devapix.repo.CategoryRepo;
-import com.devapix.service.CategoryService;
+package com.devapix.api_catalog_service.service.impl;
+import com.devapix.api_catalog_service.model.CategoryModel;
+import com.devapix.api_catalog_service.repo.CategoryRepo;
+import com.devapix.api_catalog_service.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
-import com.devapix.exception.*;
+import com.devapix.api_catalog_service.exception.*;
 
 import java.util.List;
 

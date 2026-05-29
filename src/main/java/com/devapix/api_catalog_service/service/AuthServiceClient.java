@@ -1,4 +1,4 @@
-package com.devapix.service;
+package com.devapix.api_catalog_service.service;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

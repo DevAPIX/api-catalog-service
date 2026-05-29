@@ -1,4 +1,4 @@
-package com.devapix.service;
+package com.devapix.api_catalog_service.service;
 
 public interface SwaggerImportService {
 

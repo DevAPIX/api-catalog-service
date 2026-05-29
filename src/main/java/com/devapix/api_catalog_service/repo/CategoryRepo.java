@@ -1,6 +1,6 @@
-package com.devapix.repo;
+package com.devapix.api_catalog_service.repo;
 
-import com.devapix.model.CategoryModel;
+import com.devapix.api_catalog_service.model.CategoryModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
