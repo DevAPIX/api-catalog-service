@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../api-subscription-service"
+		},
+		{
+			"path": "../sandbox-service"
+		}
+	]
+}
