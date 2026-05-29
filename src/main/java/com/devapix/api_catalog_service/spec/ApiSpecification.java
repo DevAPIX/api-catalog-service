@@ -1,6 +1,6 @@
-package com.devapix.spec;
+package com.devapix.api_catalog_service.spec;
 
-import com.devapix.model.ApiModel;
+import com.devapix.api_catalog_service.model.ApiModel;
 import org.springframework.data.jpa.domain.Specification;
 import jakarta.persistence.criteria.Predicate;
 import java.util.ArrayList;

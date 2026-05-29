@@ -1,4 +1,4 @@
-package com.devapix.dto;
+package com.devapix.api_catalog_service.dto;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;

@@ -1,4 +1,4 @@
-package com.devapix.dto;
+package com.devapix.api_catalog_service.dto;
 
 import lombok.Builder;
 import lombok.Data;

@@ -1,9 +1,9 @@
-package com.devapix.service.impl;
+package com.devapix.api_catalog_service.service.impl;
 
-import com.devapix.exception.SwaggerImportException;
-import com.devapix.model.ApiEndpoint;
-import com.devapix.repo.ApiEndpointRepo;
-import com.devapix.service.SwaggerImportService;
+import com.devapix.api_catalog_service.exception.SwaggerImportException;
+import com.devapix.api_catalog_service.model.ApiEndpoint;
+import com.devapix.api_catalog_service.repo.ApiEndpointRepo;
+import com.devapix.api_catalog_service.service.SwaggerImportService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.models.*;
 import io.swagger.v3.oas.models.parameters.Parameter;
@@ -13,8 +13,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
-import com.devapix.exception.*;
-import com.devapix.repo.*;
+import com.devapix.api_catalog_service.exception.*;
+import com.devapix.api_catalog_service.repo.*;
 import java.util.*;
 
 @Service
@@ -46,7 +46,7 @@ public class SwaggerImportServiceImpl implements SwaggerImportService {
     public int importFromFile(String content, Integer apiId) throws Exception {
 
         if (!apiRepo.existsById(apiId)) {
-            throw new com.devapix.exception.ApiNotFoundException(messageSource.getMessage("api.not.found", new Object[]{apiId}, LocaleContextHolder.getLocale()));
+            throw new com.devapix.api_catalog_service.exception.ApiNotFoundException(messageSource.getMessage("api.not.found", new Object[]{apiId}, LocaleContextHolder.getLocale()));
         }
         SwaggerParseResult result = new OpenAPIV3Parser().readContents(content);
         OpenAPI openAPI = result.getOpenAPI();

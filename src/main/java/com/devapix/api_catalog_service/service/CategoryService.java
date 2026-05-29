@@ -1,6 +1,6 @@
-package com.devapix.service;
+package com.devapix.api_catalog_service.service;
 
-import com.devapix.model.CategoryModel;
+import com.devapix.api_catalog_service.model.CategoryModel;
 
 import java.util.List;
 

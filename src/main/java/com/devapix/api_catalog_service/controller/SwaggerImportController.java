@@ -1,11 +1,11 @@
-package com.devapix.controller;
+package com.devapix.api_catalog_service.controller;
 
-import com.devapix.dto.response.SwaggerImportResponse;
-import com.devapix.exception.BadRequestException;
-import com.devapix.exception.ResourceNotFoundException;
-import com.devapix.model.ApiEndpoint;
-import com.devapix.repo.ApiEndpointRepo;
-import com.devapix.service.SwaggerImportService;
+import com.devapix.api_catalog_service.dto.response.SwaggerImportResponse;
+import com.devapix.api_catalog_service.exception.BadRequestException;
+import com.devapix.api_catalog_service.exception.ResourceNotFoundException;
+import com.devapix.api_catalog_service.model.ApiEndpoint;
+import com.devapix.api_catalog_service.repo.ApiEndpointRepo;
+import com.devapix.api_catalog_service.service.SwaggerImportService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;

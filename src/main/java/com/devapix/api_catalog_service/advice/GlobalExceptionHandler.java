@@ -1,12 +1,10 @@
 package com.devapix.api_catalog_service.advice;
 
-import com.devapix.exception.BadRequestException;
-import com.devapix.dto.response.ErrorResponse;
-import com.devapix.exception.ResourceNotFoundException;
-import com.devapix.exception.SwaggerImportException;
+import com.devapix.api_catalog_service.exception.BadRequestException;
+import com.devapix.api_catalog_service.dto.response.ErrorResponse;
+import com.devapix.api_catalog_service.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
@@ -14,12 +12,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.multipart.MaxUploadSizeExceededException;
-
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
+
 
 @RestControllerAdvice
 @Slf4j

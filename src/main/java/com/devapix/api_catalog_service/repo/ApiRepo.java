@@ -1,5 +1,5 @@
-package com.devapix.repo;
-import com.devapix.model.ApiModel;
+package com.devapix.api_catalog_service.repo;
+import com.devapix.api_catalog_service.model.ApiModel;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

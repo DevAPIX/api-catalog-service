@@ -1,4 +1,4 @@
-package com.devapix.model;
+package com.devapix.api_catalog_service.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
