@@ -1,17 +1,20 @@
 package com.devapix.api_catalog_service.spec;
 
 import com.devapix.api_catalog_service.model.ApiModel;
-import org.springframework.data.jpa.domain.Specification;
 import jakarta.persistence.criteria.Predicate;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.data.jpa.domain.Specification;
 
 public class ApiSpecification {
 
-    public static Specification<ApiModel> filterApis(Integer categoryId, String visibility, String queryText, String wildcard
+    public static Specification<ApiModel> filterApis(Integer categoryId, String visibility, String queryText, String wildcard, boolean includeDeleted, Integer ownerId
     ) {
         return (root, query, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
+            if (!includeDeleted) {
+                predicates.add(cb.notEqual(root.get("status"), "DELETED"));
+            }
             if (categoryId != null) {
                 predicates.add(cb.equal(root.get("categoryId"), categoryId));
             }

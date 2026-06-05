@@ -1,7 +1,9 @@
 package com.devapix.api_catalog_service.service.impl;
 
+import com.devapix.api_catalog_service.exception.*;
 import com.devapix.api_catalog_service.exception.SwaggerImportException;
 import com.devapix.api_catalog_service.model.ApiEndpoint;
+import com.devapix.api_catalog_service.repo.*;
 import com.devapix.api_catalog_service.repo.ApiEndpointRepo;
 import com.devapix.api_catalog_service.service.SwaggerImportService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,13 +11,11 @@ import io.swagger.v3.oas.models.*;
 import io.swagger.v3.oas.models.parameters.Parameter;
 import io.swagger.v3.parser.OpenAPIV3Parser;
 import io.swagger.v3.parser.core.models.SwaggerParseResult;
+import java.util.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
-import com.devapix.api_catalog_service.exception.*;
-import com.devapix.api_catalog_service.repo.*;
-import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -44,7 +44,6 @@ public class SwaggerImportServiceImpl implements SwaggerImportService {
 
     @Override
     public int importFromFile(String content, Integer apiId) throws Exception {
-
         if (!apiRepo.existsById(apiId)) {
             throw new com.devapix.api_catalog_service.exception.ApiNotFoundException(messageSource.getMessage("api.not.found", new Object[]{apiId}, LocaleContextHolder.getLocale()));
         }
@@ -58,7 +57,6 @@ public class SwaggerImportServiceImpl implements SwaggerImportService {
     }
 
     private void saveEndpoints(OpenAPI openAPI, Integer apiId) throws Exception {
-
         Paths paths = openAPI.getPaths();
         if (paths == null) return;
         for (Map.Entry<String, PathItem> pathEntry : paths.entrySet()) {
@@ -67,9 +65,7 @@ public class SwaggerImportServiceImpl implements SwaggerImportService {
             Map<PathItem.HttpMethod, Operation> operations = pathItem.readOperationsMap();
             for (Map.Entry<PathItem.HttpMethod, Operation> op : operations.entrySet()) {
                 Operation operation = op.getValue();
-                ApiEndpoint apiEndpoint = ApiEndpoint.builder().apiId(apiId).endpoint(endpoint).method(op.getKey().name())
-                        .headersJson(extractHeaders(operation)).paramsJson(extractParams(operation)).sampleRequest(extractRequestBody(operation))
-                        .sampleResponse(extractResponse(operation)).statusCodesJson(extractStatusCodes(operation)).build();
+                ApiEndpoint apiEndpoint = ApiEndpoint.builder().apiId(apiId).endpoint(endpoint).method(op.getKey().name()).headersJson(extractHeaders(operation)).paramsJson(extractParams(operation)).sampleRequest(extractRequestBody(operation)).sampleResponse(extractResponse(operation)).statusCodesJson(extractStatusCodes(operation)).build();
                 repository.save(apiEndpoint);
             }
         }

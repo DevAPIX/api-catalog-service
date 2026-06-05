@@ -1,5 +1,6 @@
 package com.devapix.api_catalog_service.dto;
 
+
 import lombok.Data;
 
 @Data
@@ -12,4 +13,6 @@ public class ApiSearchRequest {
     private int size;
     private String sortBy;
     private String direction;
+    private Integer ownerId;
+    private boolean includeDeleted = false;
 }

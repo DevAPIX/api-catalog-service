@@ -1,14 +1,15 @@
 package com.devapix.api_catalog_service.service.impl;
+
+import com.devapix.api_catalog_service.dto.CategoryUpdateRequest;
+import com.devapix.api_catalog_service.exception.*;
 import com.devapix.api_catalog_service.model.CategoryModel;
 import com.devapix.api_catalog_service.repo.CategoryRepo;
 import com.devapix.api_catalog_service.service.CategoryService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
-import com.devapix.api_catalog_service.exception.*;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -32,10 +33,10 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryModel updateCategory(CategoryModel category) {
-        CategoryModel existing = repo.findById(category.getId()).orElseThrow(() -> new CategoryNotFoundException(messageSource.getMessage("category.not.found", new Object[]{category.getId()}, LocaleContextHolder.getLocale())));
-        existing.setName(category.getName());
-        existing.setDescription(category.getDescription());
+    public CategoryModel updateCategory(CategoryUpdateRequest request) {
+        CategoryModel existing = repo.findById(request.getId()).orElseThrow(() -> new CategoryNotFoundException(messageSource.getMessage("category.not.found", new Object[]{request.getId()}, LocaleContextHolder.getLocale())));
+        existing.setName(request.getName().trim());
+        existing.setDescription(request.getDescription().trim());
         return repo.save(existing);
     }
 

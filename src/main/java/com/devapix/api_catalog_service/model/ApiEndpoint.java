@@ -1,13 +1,12 @@
 package com.devapix.api_catalog_service.model;
 
 import jakarta.persistence.*;
+import java.sql.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-
-import java.sql.Timestamp;
 
 @Entity
 @Table(name = "api_endpoints")
@@ -20,29 +19,19 @@ public class ApiEndpoint {
         @Id
         @GeneratedValue
         private Integer id;
-
         private Integer apiId;
-
         private String endpoint;
-
         private String method;
-
         @Column(columnDefinition = "TEXT")
         private String headersJson;
-
         @Column(columnDefinition = "TEXT")
         private String paramsJson;
-
         @Column(columnDefinition = "TEXT")
         private String sampleRequest;
-
         @Column(columnDefinition = "TEXT")
         private String sampleResponse;
-
         @Column(columnDefinition = "TEXT")
         private String statusCodesJson;
-
         @CreationTimestamp
         private Timestamp createdAt;
-
 }

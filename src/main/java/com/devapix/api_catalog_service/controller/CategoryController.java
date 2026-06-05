@@ -1,12 +1,14 @@
 package com.devapix.api_catalog_service.controller;
+
+import com.devapix.api_catalog_service.dto.CategoryUpdateRequest;
 import com.devapix.api_catalog_service.model.CategoryModel;
 import com.devapix.api_catalog_service.service.CategoryService;
+import jakarta.validation.Valid;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import jakarta.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -27,8 +29,8 @@ public class CategoryController {
     }
 
     @PutMapping
-    public ResponseEntity<CategoryModel> updateCategory(@Valid @RequestBody CategoryModel category) {
-        CategoryModel updated = service.updateCategory(category);
+    public ResponseEntity<CategoryModel> updateCategory(@Valid @RequestBody CategoryUpdateRequest request) {
+        CategoryModel updated = service.updateCategory(request);
         return ResponseEntity.ok(updated);
     }
 
