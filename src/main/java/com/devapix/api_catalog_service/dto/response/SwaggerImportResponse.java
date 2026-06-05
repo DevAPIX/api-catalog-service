@@ -1,5 +1,6 @@
 package com.devapix.api_catalog_service.dto.response;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

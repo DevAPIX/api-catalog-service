@@ -1,10 +1,11 @@
 package com.devapix.api_catalog_service.repo;
 
+
 import com.devapix.api_catalog_service.model.CategoryModel;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import java.util.List;
 
 public interface CategoryRepo extends JpaRepository<CategoryModel, Integer> {
 

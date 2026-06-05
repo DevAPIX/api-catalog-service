@@ -35,17 +35,17 @@ public class ApiServiceImpl implements ApiService {
     private final ApiMemberRepo apiMemberRepo;
     private final MessageSource messageSource;
 
-    @Value("${role.owner}")
+    @Value("${role.owner:OWNER}")
     private String ownerRole;
 
     @Override
     @Transactional
     public ApiResponse publishApi(CreateApiRequest request, Integer ownerId) {
 
-        if (apiRepo.existsByName(request.getName())) {
+        if (apiRepo.existsByNameAndStatusNot(request.getName(), "DELETED")) {
             throw new BadRequestException(messageSource.getMessage("api.name.exists", new Object[]{request.getName()}, LocaleContextHolder.getLocale()));
         }
-        if (apiRepo.existsByBaseUrl(request.getBaseUrl())) {
+        if (apiRepo.existsByBaseUrlAndStatusNot(request.getBaseUrl(), "DELETED")) {
             throw new BadRequestException(messageSource.getMessage("api.baseUrl.exists", new Object[]{request.getBaseUrl()}, LocaleContextHolder.getLocale()));
         }
         if (!categoryRepo.existsById(request.getCategoryId())) {
@@ -59,8 +59,6 @@ public class ApiServiceImpl implements ApiService {
         api.setDescription(request.getDescription());
         api.setBaseUrl(request.getBaseUrl());
         api.setVisibility(request.getVisibility());
-        api.setPrice(request.getPrice());
-        api.setRequestLimit(request.getRequestLimit());
         ApiModel savedApi = apiRepo.save(api);
         ApiMember apiMember = ApiMember.builder().apiId(savedApi.getId()).userId(ownerId).role(ownerRole).build();
         apiMemberRepo.save(apiMember);
@@ -90,7 +88,7 @@ public class ApiServiceImpl implements ApiService {
             log.debug("Using Category ID: {} for search term: '{}'", categoryId, categoryName);
         }
         String visibility = (request.getVisibility() != null) ? request.getVisibility().trim() : null;
-        Page<ApiModel> result = apiRepo.findAll(ApiSpecification.filterApis(categoryId, visibility, request.getQuery(), "%"), pageable);
+        Page<ApiModel> result = apiRepo.findAll(ApiSpecification.filterApis(categoryId, visibility, request.getQuery(), "%", request.isIncludeDeleted(), request.getOwnerId()), pageable);
         log.debug("Search returned {} results", result.getTotalElements());
         return result.map(ApiMapper::toDTO);
     }

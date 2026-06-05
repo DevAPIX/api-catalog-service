@@ -1,4 +1,6 @@
 package com.devapix.api_catalog_service.repo;
+
+import  java.util.*;
 import com.devapix.api_catalog_service.model.ApiModel;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +19,8 @@ public interface ApiRepo extends JpaRepository<ApiModel,Integer> , JpaSpecificat
         AND (:visibility IS NULL OR a.visibility = :visibility)
     """)
     Page<ApiModel> findApis(@Param("categoryId") Integer categoryId, @Param("visibility") String visibility, Pageable pageable);
-    boolean existsByName(String name);
-    boolean existsByBaseUrl(String baseUrl);
+    boolean existsByNameAndStatusNot(String name, String status);
+    boolean existsByBaseUrlAndStatusNot(String baseUrl, String status);
+    List<ApiModel> findByCategoryId(Integer categoryId);
+   List<ApiModel> findByStatus(String status);
 }

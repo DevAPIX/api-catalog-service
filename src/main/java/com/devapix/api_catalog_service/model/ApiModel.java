@@ -1,13 +1,12 @@
 package com.devapix.api_catalog_service.model;
 
 import jakarta.persistence.*;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import java.util.Date;
 
 @Entity
 @Data
@@ -27,9 +26,7 @@ public class ApiModel {
     @Column(name = "base_url")
     String baseUrl;
     String visibility;
-    int price;
-    @Column(name = "request_limit")
-    int requestLimit;
+    String status = "ACTIVE";
     @CreationTimestamp
     @Column(name = "created_at")
     Date createdAt;
